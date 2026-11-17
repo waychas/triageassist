@@ -1,0 +1,37 @@
+{
+  "id": "INC-001",
+  "service": "payments",
+  "summary": "Payment requests began timing out after a deployment.",
+  "window_start": "2026-11-17T10:00:00Z",
+  "window_end": "2026-11-17T10:15:00Z",
+  "evidence": [
+    {
+      "id": "deploy-1",
+      "kind": "deployment",
+      "service": "payments",
+      "timestamp": "2026-11-17T10:01:00Z",
+      "detail": "Released v1.8.0. Database connection pool max size changed from 20 to 5."
+    },
+    {
+      "id": "log-1",
+      "kind": "log",
+      "service": "payments",
+      "timestamp": "2026-11-17T10:03:00Z",
+      "detail": "Database connection acquisition timed out after 30000 ms."
+    },
+    {
+      "id": "metric-1",
+      "kind": "metric",
+      "service": "payments",
+      "timestamp": "2026-11-17T10:04:00Z",
+      "detail": "Active database connections: 5. Waiting requests: 42. Before deployment: 0 waiting."
+    },
+    {
+      "id": "old-log",
+      "kind": "log",
+      "service": "payments",
+      "timestamp": "2026-11-16T10:00:00Z",
+      "detail": "Old unrelated timeout; must be excluded from this investigation."
+    }
+  ]
+}
